@@ -1,0 +1,21 @@
+Copy and pasted this from the following thread; i'm just putting it here incase the thread disappears for whatever reason. Credit to the user with the mildly offensive username: https://steamcommunity.com/discussions/forum/30/6516193260173485339/
+* Please note Ive tweaked this to be linux specific to help Steamdeck/Linux users, the Windows fix can be found on the above steamcommunity link.
+
+1. Open the folder where steam is installed
+-On linux this is: /home/.local/share/Steam
+
+2. Open the "logs" folder
+-This is hidden by default, press ctrl+h to re-enable or click on the three dots menu and select 'Show Hidden Files'
+
+3. Open the content_log.txt file
+-It can be found here: /home/.local/share/Steam/logs
+
+4. Search for "failed". I found a entry that said
+-You can ignore these 'failures': [2024-03-06 08:53:59] Validation: 23 chunks failed to read of 23 total in file "data\df59230692f9cd1c.stream" (None)
+- What you want is something like this: [2024-03-06 08:23:25] AppID 553850 update canceled : Failed updating depot 553853 while reading chunk "45e46c88f4059f7a586c310af9ba360f231e13b4" (Read Failed) (Corrupt game files) "/home/.local/share/Steam/steamapps/common/Helldivers 2/data/d2711cd33fc143e1.stream"
+- The important thing to look for is the specified path: '/home/.local/share/Steam/steamapps/common/Helldivers 2/data/d2711cd33fc143e1.stream'
+- Repeat this as necessary to isolate the failed or corrupted files. 
+5. Open the file location listed in your failed entry and delete the listed file
+- In the above example navigate to '/home/.local/share/Steam/steamapps/common/Helldivers 2/data/d2711cd33fc143e1.stream' and delete the .stream file
+6. From here, update the software via steam via the Downloads panel and then wait for the updates to apply, relaunch the software and it will work. 
+- Should the software not run at this point please try using a different version of proton such as Experimental or a GE Release. 
